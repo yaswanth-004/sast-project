@@ -14,10 +14,8 @@ pipeline {
 
         stage('Install Go and Run SAST Tool') {
             steps {
-                sh '''
-                    mkdir -p results
-                    go run file_iterator.go --input ./testcode/ > results/${SAST_REPORT}
-                '''
+                bat 'go version'
+                bat 'go run file_iterator.go --input ./testcode/'
             }
         }
 
