@@ -1,7 +1,7 @@
 package main
 
 import (
-	"bufio"
+	"flag"
 	"fmt"
 	"io"
 	"log"
@@ -55,30 +55,27 @@ func main() {
 	fmt.Fprintln(reportFile, "====== SAST Report ======")
 
 	log.Println("Starting SAST file iterator")
-	// Initialize logging
-	log.SetFlags(log.LstdFlags | log.Lshortfile)
-	log.Println("Starting SAST file iterator")
 
-	// Ask user for root directory
-	reader := bufio.NewReader(os.Stdin)
-	log.Print("Enter the root directory path: ")
-	root, err := reader.ReadString('\n')
-	if err != nil {
-		log.Fatalf("Failed to read input: %v", err)
+	// ✅ Use flag to get --input instead of reading from terminal
+	var root string
+	flag.StringVar(&root, "input", "", "Root directory to scan")
+	flag.Parse()
+
+	if root == "" {
+		log.Fatal("Missing --input argument. Usage: go run main.go --input ./testcode/")
 	}
-	root = strings.TrimSpace(root)
 
-	// Validate directory
+	// ✅ Validate directory
 	if _, err := os.Stat(root); os.IsNotExist(err) {
 		log.Fatalf("Directory %s does not exist", root)
 	}
 
-	// Process files sequentially
+	// ✅ Same logic continues...
 	var errors []error
 	err = filepath.WalkDir(root, func(path string, d os.DirEntry, err error) error {
 		if err != nil {
 			log.Printf("Error accessing %s: %v", path, err)
-			return nil // Continue walking
+			return nil
 		}
 		if !d.IsDir() && isSupported(path) {
 			data, readErr := os.ReadFile(path)
@@ -86,10 +83,7 @@ func main() {
 				log.Printf("Could not read file %s: %v", path, readErr)
 				return nil
 			}
-			source := SourceFile{
-				Path:    path,
-				Content: string(data),
-			}
+			source := SourceFile{Path: path, Content: string(data)}
 			log.Printf("Processing file: %s", source.Path)
 			if procErr := processFile(source); procErr != nil {
 				errors = append(errors, fmt.Errorf("file %s: %v", source.Path, procErr))
@@ -97,12 +91,12 @@ func main() {
 		}
 		return nil
 	})
+
 	if err != nil {
 		log.Printf("Directory walk error: %v", err)
 		errors = append(errors, fmt.Errorf("directory walk: %v", err))
 	}
 
-	// Report errors
 	if len(errors) > 0 {
 		log.Println("Errors encountered during analysis:")
 		for _, e := range errors {
@@ -113,7 +107,6 @@ func main() {
 		log.Println("Analysis completed successfully")
 	}
 }
-
 func isSupported(path string) bool {
 	ext := strings.ToLower(filepath.Ext(path))
 	return supportedExtensions[ext]
