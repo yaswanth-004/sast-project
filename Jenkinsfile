@@ -40,17 +40,16 @@ pipeline {
     }
 
     post {
-        unstable {
-            script {
-                if (env.SHOULD_EMAIL == "true") {
-                    emailext (
-                        subject: "🚨 SAST Alert - Vulnerabilities Found",
-                        body: "Hello,\n\nVulnerabilities were found in the latest scan.\n\nCheck the attached report.\n\nThanks,\nSAST Bot",
-                        to: "maacyaswanth@gmail.com",
-                        attachmentsPattern: "${report}"
-                    )
-                }
-            }
+    always {
+        script {
+            def reportContent = readFile('results/report.txt')
+            echo "Report contents:\n${reportContent}"
+
+            emailext subject: "SAST Report - Build ${env.BUILD_NUMBER}",
+                     body: """Please find the SAST report below:\n\n${reportContent}""",
+                     to: "maacyaswanth@gmail.com"
         }
     }
+}
+
 }
