@@ -1,0 +1,473 @@
+====== SAST Report ======
+2025/06/23 00:10:04 file_iterator.go:57: Starting SAST file iterator
+2025/06/23 00:10:04 file_iterator.go:60: Starting SAST file iterator
+2025/06/23 00:11:47 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\sast-project\c_c_pluse_parser\rule_engine\rust\lang\security\args-os.rs
+2025/06/23 00:11:47 rustparser.go:231: Rust AST parsing complete for: args-os.rs
+2025/06/23 00:11:47 rustparser.go:236: [TOP-LEVEL NODE] source_file: "use std::env;\r\n\r\n// ruleid: args-os\r\nlet args = env::args_os();\r\n" at Line 1:0 → Line 5:0
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "env::args_os()"
+Location: Line 4:11 → Line 4:25
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "env::args_os()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 4:11 → Line 4:25
+2025/06/23 00:11:47 rustparser.go:208: Message      : The use of 'env::args_os()' may lead to platform-dependent behavior when handling non-UTF-8 encoded arguments. 
+This can cause logic bugs or crashes when processing command-line input across different operating systems. 
+This falls under OWASP Top 10 A01:2021 - Broken Access Control when input parsing impacts program flow or privilege decisions.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Use 'env::args()' instead, which ensures UTF-8 encoded inputs and avoids encoding issues. 
+Also validate and sanitize command-line arguments properly before use.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-172: Encoding Error
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Medium
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\sast-project\c_c_pluse_parser\rule_engine\rust\lang\security\args.rs
+2025/06/23 00:11:47 rustparser.go:231: Rust AST parsing complete for: args.rs
+2025/06/23 00:11:47 rustparser.go:236: [TOP-LEVEL NODE] source_file: "use std::env;\r\n\r\n// ruleid: args\r\nlet args = env::args();\r\n" at Line 1:0 → Line 5:0
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "env::args()"
+Location: Line 4:11 → Line 4:22
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "env::args()"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 4:11 → Line 4:22
+2025/06/23 00:11:47 rustparser.go:220: Message      : The use of 'env::args()' is safe and ensures UTF-8 encoded input from CLI.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\sast-project\c_c_pluse_parser\rule_engine\rust\lang\security\current-exe.rs
+2025/06/23 00:11:47 rustparser.go:231: Rust AST parsing complete for: current-exe.rs
+2025/06/23 00:11:47 rustparser.go:236: [TOP-LEVEL NODE] source_file: "use std::env;\r\n\r\n// ruleid: current-exe\r\nlet exe = env::current_exe();\r\n" at Line 1:0 → Line 5:0
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "env::current_exe()"
+Location: Line 4:10 → Line 4:28
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "env::current_exe()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 4:10 → Line 4:28
+2025/06/23 00:11:47 rustparser.go:208: Message      : Using 'env::current_exe()' can panic or fail in minimal environments or containers where the path to the executable cannot be determined.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Always check for errors when using 'current_exe()'. Avoid relying on it for critical logic unless fallback logic is implemented.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-703: Improper Check or Handling of Exceptional Conditions
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Low
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\sast-project\c_c_pluse_parser\rule_engine\rust\lang\security\insecure-hashes.rs
+2025/06/23 00:11:47 rustparser.go:231: Rust AST parsing complete for: insecure-hashes.rs
+2025/06/23 00:11:47 rustparser.go:236: [TOP-LEVEL NODE] source_file: "use md2::{Md2};\r\nuse md4::{Md4};\r\nuse md5::{Md5};\r\nuse sha1::{Sha1};\r\nuse sha2::{Sha256};\r\n\r\n// ruleid: insecure-hashes\r\nlet mut hasher = Md2::new();\r\n\r\n// ruleid: insecure-hashes\r\nlet mut hasher = Md4::new();\r\n\r\n// ruleid: insecure-hashes\r\nlet mut hasher = Md5::new();\r\n\r\n// ruleid: insecure-hashes\r\nlet mut hasher = Sha1::new();\r\n\r\n// ok: insecure-hashes\r\nlet mut hasher = Sha256::new();\r\n" at Line 1:0 → Line 21:0
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "Sha1::new()"
+Location: Line 17:17 → Line 17:28
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "Md4::new()"
+Location: Line 11:17 → Line 11:27
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "Md5::new()"
+Location: Line 14:17 → Line 14:27
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "Sha256::new()"
+Location: Line 20:17 → Line 20:30
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "Md2::new()"
+Location: Line 8:17 → Line 8:27
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "Md2::new()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 8:17 → Line 8:27
+2025/06/23 00:11:47 rustparser.go:208: Message      : MD2 is a broken cryptographic hash function and should not be used for any security-sensitive operations.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Use SHA-2 (e.g., Sha256) or SHA-3 family algorithms.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-328: Use of Weak Hash
+2025/06/23 00:11:47 rustparser.go:211: Severity     : High
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "Sha1::new()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 17:17 → Line 17:28
+2025/06/23 00:11:47 rustparser.go:208: Message      : SHA-1 has known collision attacks and should no longer be used.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Use a stronger hash function like Sha256.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-328
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Medium
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "Md4::new()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 11:17 → Line 11:27
+2025/06/23 00:11:47 rustparser.go:208: Message      : MD4 is insecure and has been broken. It should not be used for hashing sensitive data.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Use SHA-2 (e.g., Sha256) or SHA-3.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-328
+2025/06/23 00:11:47 rustparser.go:211: Severity     : High
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "Md5::new()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 14:17 → Line 14:27
+2025/06/23 00:11:47 rustparser.go:208: Message      : MD5 is considered cryptographically broken and unsuitable for further use.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Use SHA-2 (e.g., Sha256) instead.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-327: Use of a Broken or Risky Cryptographic Algorithm
+2025/06/23 00:11:47 rustparser.go:211: Severity     : High
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "Sha256::new()"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 20:17 → Line 20:30
+2025/06/23 00:11:47 rustparser.go:220: Message      : Sha256 is a secure cryptographic hash algorithm (SHA-2 family).
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\sast-project\c_c_pluse_parser\rule_engine\rust\lang\security\reqwest-accept-invalid.rs
+2025/06/23 00:11:47 rustparser.go:231: Rust AST parsing complete for: reqwest-accept-invalid.rs
+2025/06/23 00:11:47 rustparser.go:236: [TOP-LEVEL NODE] source_file: "use reqwest::header;\r\n\r\n// ruleid: reqwest-accept-invalid\r\nlet client = reqwest::Client::builder()\r\n    .danger_accept_invalid_hostnames(true)\r\n    .build();\r\n\r\n// ruleid: reqwest-accept-invalid\r\nlet client = reqwest::Client::builder()\r\n    .danger_accept_invalid_certs(true)\r\n    .build();\r\n\r\n// ruleid: reqwest-accept-invalid\r\nlet client = reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)\r\n    .danger_accept_invalid_hostnames(true)\r\n    .build();\r\n\r\n// ruleid: reqwest-accept-invalid\r\nlet client = reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)\r\n    .danger_accept_invalid_certs(true)\r\n    .build();\r\n\r\n// ok: reqwest-accept-invalid\r\nlet client = reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .build();\r\n" at Line 1:0 → Line 31:0
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()"
+Location: Line 14:13 → Line 14:39
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)"
+Location: Line 21:13 → Line 23:23
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()"
+Location: Line 4:13 → Line 4:39
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()"
+Location: Line 28:13 → Line 28:39
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()"
+Location: Line 9:13 → Line 9:39
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)\r\n    .danger_accept_invalid_hostnames(true)\r\n    .build()"
+Location: Line 14:13 → Line 18:12
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .danger_accept_invalid_certs(true)"
+Location: Line 9:13 → Line 10:38
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)\r\n    .danger_accept_invalid_certs(true)"
+Location: Line 21:13 → Line 24:38
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .danger_accept_invalid_hostnames(true)"
+Location: Line 4:13 → Line 5:42
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")"
+Location: Line 14:13 → Line 15:29
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .build()"
+Location: Line 28:13 → Line 30:12
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)"
+Location: Line 14:13 → Line 16:23
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")"
+Location: Line 28:13 → Line 29:29
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)\r\n    .danger_accept_invalid_hostnames(true)"
+Location: Line 14:13 → Line 17:42
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")"
+Location: Line 21:13 → Line 22:29
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()"
+Location: Line 21:13 → Line 21:39
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .danger_accept_invalid_hostnames(true)\r\n    .build()"
+Location: Line 4:13 → Line 6:12
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)\r\n    .danger_accept_invalid_certs(true)\r\n    .build()"
+Location: Line 21:13 → Line 25:12
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "reqwest::Client::builder()\r\n    .danger_accept_invalid_certs(true)\r\n    .build()"
+Location: Line 9:13 → Line 11:12
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "reqwest::Client::builder()\r\n    .danger_accept_invalid_certs(true)\r\n    .build()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 9:13 → Line 11:12
+2025/06/23 00:11:47 rustparser.go:208: Message      : Disabling certificate validation via 'danger_accept_invalid_certs(true)' exposes the application to MITM attacks.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Remove 'danger_accept_invalid_certs' or set it to 'false'. Always validate certificates.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-295
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Critical
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 14:13 → Line 14:39
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 21:13 → Line 23:23
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 4:13 → Line 4:39
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 28:13 → Line 28:39
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 9:13 → Line 9:39
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)\r\n    .danger_accept_invalid_hostnames(true)\r\n    .build()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 14:13 → Line 18:12
+2025/06/23 00:11:47 rustparser.go:208: Message      : Disabling hostname verification via 'danger_accept_invalid_hostnames(true)' allows MITM attacks.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Avoid using 'danger_accept_invalid_hostnames'. Use proper TLS validation.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-295: Improper Certificate Validation
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Critical
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "reqwest::Client::builder()\r\n    .danger_accept_invalid_certs(true)"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 9:13 → Line 10:38
+2025/06/23 00:11:47 rustparser.go:208: Message      : Disabling certificate validation via 'danger_accept_invalid_certs(true)' exposes the application to MITM attacks.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Remove 'danger_accept_invalid_certs' or set it to 'false'. Always validate certificates.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-295
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Critical
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)\r\n    .danger_accept_invalid_certs(true)"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 21:13 → Line 24:38
+2025/06/23 00:11:47 rustparser.go:208: Message      : Disabling certificate validation via 'danger_accept_invalid_certs(true)' exposes the application to MITM attacks.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Remove 'danger_accept_invalid_certs' or set it to 'false'. Always validate certificates.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-295
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Critical
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "reqwest::Client::builder()\r\n    .danger_accept_invalid_hostnames(true)"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 4:13 → Line 5:42
+2025/06/23 00:11:47 rustparser.go:208: Message      : Disabling hostname verification via 'danger_accept_invalid_hostnames(true)' allows MITM attacks.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Avoid using 'danger_accept_invalid_hostnames'. Use proper TLS validation.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-295: Improper Certificate Validation
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Critical
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 14:13 → Line 15:29
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .build()"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 28:13 → Line 30:12
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 14:13 → Line 16:23
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 28:13 → Line 29:29
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)\r\n    .danger_accept_invalid_hostnames(true)"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 14:13 → Line 17:42
+2025/06/23 00:11:47 rustparser.go:208: Message      : Disabling hostname verification via 'danger_accept_invalid_hostnames(true)' allows MITM attacks.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Avoid using 'danger_accept_invalid_hostnames'. Use proper TLS validation.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-295: Improper Certificate Validation
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Critical
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 21:13 → Line 22:29
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:215:  Safe Usage Detected
+2025/06/23 00:11:47 rustparser.go:216: Code         : "reqwest::Client::builder()"
+2025/06/23 00:11:47 rustparser.go:217: Location     : Line 21:13 → Line 21:39
+2025/06/23 00:11:47 rustparser.go:220: Message      : You are securely using 'reqwest::Client::builder()' without disabling TLS verification.
+2025/06/23 00:11:47 rustparser.go:221: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "reqwest::Client::builder()\r\n    .danger_accept_invalid_hostnames(true)\r\n    .build()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 4:13 → Line 6:12
+2025/06/23 00:11:47 rustparser.go:208: Message      : Disabling hostname verification via 'danger_accept_invalid_hostnames(true)' allows MITM attacks.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Avoid using 'danger_accept_invalid_hostnames'. Use proper TLS validation.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-295: Improper Certificate Validation
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Critical
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "reqwest::Client::builder()\r\n    .user_agent(\"USER AGENT\")\r\n    .cookie_store(true)\r\n    .danger_accept_invalid_certs(true)\r\n    .build()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 21:13 → Line 25:12
+2025/06/23 00:11:47 rustparser.go:208: Message      : Disabling certificate validation via 'danger_accept_invalid_certs(true)' exposes the application to MITM attacks.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Remove 'danger_accept_invalid_certs' or set it to 'false'. Always validate certificates.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-295
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Critical
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\sast-project\c_c_pluse_parser\rule_engine\rust\lang\security\reqwest-set-sensitive.rs
+2025/06/23 00:11:47 rustparser.go:231: Rust AST parsing complete for: reqwest-set-sensitive.rs
+2025/06/23 00:11:47 rustparser.go:236: [TOP-LEVEL NODE] source_file: "use reqwest::header;\r\nuse reqwest::{blocking::Client, header::HeaderMap, header::HeaderValue, Url};\r\n\r\n// ruleid: reqwest-set-sensitive\r\nlet mut headers = header::HeaderMap::new();\r\nlet header = header::HeaderValue::from_static(\"secret\");\r\nheaders.insert(header::AUTHORIZATION, header);\r\n\r\n// ruleid: reqwest-set-sensitive\r\nlet mut headers = header::HeaderMap::new();\r\nlet header = header::HeaderValue::from_static(\"secret\");\r\nheaders.insert(\"Authorization\", header);\r\n\r\n// ruleid: reqwest-set-sensitive\r\nlet mut headers = header::HeaderMap::new();\r\nlet header = header::HeaderValue::from_static(\"secret\").map_err(|e| {\r\n    Error::Generic(format!(\r\n        \"Error\"\r\n    ))\r\n});\r\nheaders.insert(header::AUTHORIZATION, header);\r\n\r\n// Remove todo when Rust supports import equivalence\r\n// todoruleid: reqwest-set-sensitive\r\nlet mut headers = HeaderMap::new();\r\nlet header = HeaderValue::from_static(\"secret\");\r\nheaders.insert(header::AUTHORIZATION, header);\r\n\r\n// ok: reqwest-set-sensitive\r\nlet mut headers = header::HeaderMap::new();\r\nlet header = header::HeaderValue::from_static(\"secret\");\r\nheader.set_sensitive(true);\r\nheaders.insert(header::AUTHORIZATION, header);\r\n" at Line 1:0 → Line 34:0
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "header::HeaderMap::new()"
+Location: Line 5:18 → Line 5:42
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "header::HeaderValue::from_static(\"secret\")"
+Location: Line 6:13 → Line 6:55
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "header::HeaderValue::from_static(\"secret\")"
+Location: Line 16:13 → Line 16:55
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "headers.insert(header::AUTHORIZATION, header)"
+Location: Line 33:0 → Line 33:45
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "headers.insert(header::AUTHORIZATION, header)"
+Location: Line 21:0 → Line 21:45
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "HeaderValue::from_static(\"secret\")"
+Location: Line 26:13 → Line 26:47
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "headers.insert(\"Authorization\", header)"
+Location: Line 12:0 → Line 12:39
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "header::HeaderMap::new()"
+Location: Line 30:18 → Line 30:42
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "header::HeaderMap::new()"
+Location: Line 15:18 → Line 15:42
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "header.set_sensitive(true)"
+Location: Line 32:0 → Line 32:26
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "header::HeaderValue::from_static(\"secret\")"
+Location: Line 31:13 → Line 31:55
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "header::HeaderValue::from_static(\"secret\").map_err(|e| {\r\n    Error::Generic(format!(\r\n        \"Error\"\r\n    ))\r\n})"
+Location: Line 16:13 → Line 20:2
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "HeaderMap::new()"
+Location: Line 25:18 → Line 25:34
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "headers.insert(header::AUTHORIZATION, header)"
+Location: Line 7:0 → Line 7:45
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "header::HeaderMap::new()"
+Location: Line 10:18 → Line 10:42
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "header::HeaderValue::from_static(\"secret\")"
+Location: Line 11:13 → Line 11:55
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "Error::Generic(format!(\r\n        \"Error\"\r\n    ))"
+Location: Line 17:4 → Line 19:6
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "headers.insert(header::AUTHORIZATION, header)"
+Location: Line 27:0 → Line 27:45
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "headers.insert(header::AUTHORIZATION, header)"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 27:0 → Line 27:45
+2025/06/23 00:11:47 rustparser.go:208: Message      : Sensitive headers like 'Authorization' must be explicitly marked with 'set_sensitive(true)' to prevent leaking.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Before inserting the header, call 'header.set_sensitive(true)' to mark it secure.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-200: Exposure of Sensitive Information to an Unauthorized Actor
+2025/06/23 00:11:47 rustparser.go:211: Severity     : High
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "headers.insert(header::AUTHORIZATION, header)"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 33:0 → Line 33:45
+2025/06/23 00:11:47 rustparser.go:208: Message      : Sensitive headers like 'Authorization' must be explicitly marked with 'set_sensitive(true)' to prevent leaking.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Before inserting the header, call 'header.set_sensitive(true)' to mark it secure.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-200: Exposure of Sensitive Information to an Unauthorized Actor
+2025/06/23 00:11:47 rustparser.go:211: Severity     : High
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "headers.insert(header::AUTHORIZATION, header)"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 21:0 → Line 21:45
+2025/06/23 00:11:47 rustparser.go:208: Message      : Sensitive headers like 'Authorization' must be explicitly marked with 'set_sensitive(true)' to prevent leaking.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Before inserting the header, call 'header.set_sensitive(true)' to mark it secure.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-200: Exposure of Sensitive Information to an Unauthorized Actor
+2025/06/23 00:11:47 rustparser.go:211: Severity     : High
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "headers.insert(\"Authorization\", header)"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 12:0 → Line 12:39
+2025/06/23 00:11:47 rustparser.go:208: Message      : Sensitive headers like 'Authorization' must be explicitly marked with 'set_sensitive(true)' to prevent leaking.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Before inserting the header, call 'header.set_sensitive(true)' to mark it secure.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-200: Exposure of Sensitive Information to an Unauthorized Actor
+2025/06/23 00:11:47 rustparser.go:211: Severity     : High
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "headers.insert(header::AUTHORIZATION, header)"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 7:0 → Line 7:45
+2025/06/23 00:11:47 rustparser.go:208: Message      : Sensitive headers like 'Authorization' must be explicitly marked with 'set_sensitive(true)' to prevent leaking.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Before inserting the header, call 'header.set_sensitive(true)' to mark it secure.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-200: Exposure of Sensitive Information to an Unauthorized Actor
+2025/06/23 00:11:47 rustparser.go:211: Severity     : High
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\sast-project\c_c_pluse_parser\rule_engine\rust\lang\security\rustls-dangerous.rs
+2025/06/23 00:11:47 rustparser.go:231: Rust AST parsing complete for: rustls-dangerous.rs
+2025/06/23 00:11:47 rustparser.go:236: [TOP-LEVEL NODE] source_file: "use rustls::{RootCertStore, Certificate, ServerCertVerified, TLSError, ServerCertVerifier};\r\n\r\nlet verifier = MyServerCertVerifie;\r\n\r\n// ok: rustls-dangerous\r\nlet mut c1 = rustls::client::ClientConfig::new();\r\n\r\n// Remove todo when Rust supports direct module references\r\n// ruleid: rustls-dangerous\r\nlet mut c2 = rustls::client::DangerousClientConfig {cfg: &mut cfg};\r\nc2.set_certificate_verifier(verifier);\r\n\r\nlet mut c3 = rustls::client::ClientConfig::new();\r\n// ruleid: rustls-dangerous\r\nc3.dangerous().set_certificate_verifier(verifier);\r\n\r\n// ruleid: rustls-dangerous\r\nlet mut c4 = rustls::client::ClientConfig::dangerous(&mut ());\r\nc4.set_certificate_verifier(verifier);\r\n" at Line 1:0 → Line 20:0
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "rustls::client::ClientConfig::new()"
+Location: Line 13:13 → Line 13:48
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "rustls::client::ClientConfig::dangerous(&mut ())"
+Location: Line 18:13 → Line 18:61
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "c3.dangerous()"
+Location: Line 15:0 → Line 15:14
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "c2.set_certificate_verifier(verifier)"
+Location: Line 11:0 → Line 11:37
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "c3.dangerous().set_certificate_verifier(verifier)"
+Location: Line 15:0 → Line 15:49
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "c4.set_certificate_verifier(verifier)"
+Location: Line 19:0 → Line 19:37
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "rustls::client::ClientConfig::new()"
+Location: Line 6:13 → Line 6:48
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "c3.dangerous().set_certificate_verifier(verifier)"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 15:0 → Line 15:49
+2025/06/23 00:11:47 rustparser.go:208: Message      : Using 'dangerous().set_certificate_verifier()' disables certificate verification in rustls and can expose users to MITM attacks.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Avoid using the 'dangerous()' API unless implementing a secure, custom verification strategy. Use default verification or safe extensions.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-295: Improper Certificate Validation
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Critical
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\sast-project\c_c_pluse_parser\rule_engine\rust\lang\security\ssl-verify-none.rs
+2025/06/23 00:11:47 rustparser.go:231: Rust AST parsing complete for: ssl-verify-none.rs
+2025/06/23 00:11:47 rustparser.go:236: [TOP-LEVEL NODE] source_file: "use openssl::ssl::{SslMethod, SslConnectorBuilder, SSL_VERIFY_NONE};\r\n\r\nlet mut connector = SslConnectorBuilder::new(SslMethod::tls()).unwrap();\r\n\r\n// ruleid: ssl-verify-none\r\nconnector.builder_mut().set_verify(SSL_VERIFY_NONE);\r\n\r\n// ok: ssl-verify-none\r\nconnector.builder_mut().set_verify(SSL_VERIFY_PEER);\r\n\r\nlet openssl = OpenSsl::from(connector.build());\r\n" at Line 1:0 → Line 12:0
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "OpenSsl::from(connector.build())"
+Location: Line 11:14 → Line 11:46
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "connector.build()"
+Location: Line 11:28 → Line 11:45
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "connector.builder_mut()"
+Location: Line 9:0 → Line 9:23
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "SslConnectorBuilder::new(SslMethod::tls())"
+Location: Line 3:20 → Line 3:62
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "connector.builder_mut().set_verify(SSL_VERIFY_PEER)"
+Location: Line 9:0 → Line 9:51
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "SslMethod::tls()"
+Location: Line 3:45 → Line 3:61
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "connector.builder_mut().set_verify(SSL_VERIFY_NONE)"
+Location: Line 6:0 → Line 6:51
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "SslConnectorBuilder::new(SslMethod::tls()).unwrap()"
+Location: Line 3:20 → Line 3:71
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "connector.builder_mut()"
+Location: Line 6:0 → Line 6:23
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "SslConnectorBuilder::new(SslMethod::tls()).unwrap()"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 3:20 → Line 3:71
+2025/06/23 00:11:47 rustparser.go:208: Message      : Using 'unwrap()' may cause a panic if called on an Err or None value.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Use proper error handling like 'match', 'unwrap_or', or 'expect()' with error messages.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-248
+2025/06/23 00:11:47 rustparser.go:211: Severity     : Medium
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\sast-project\c_c_pluse_parser\rule_engine\rust\lang\security\temp-dir.rs
+2025/06/23 00:11:47 rustparser.go:231: Rust AST parsing complete for: temp-dir.rs
+2025/06/23 00:11:47 rustparser.go:236: [TOP-LEVEL NODE] source_file: "use std::env;\r\n\r\n// ruleid: temp-dir\r\nlet dir = env::temp_dir();\r\n" at Line 1:0 → Line 5:0
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "env::temp_dir()"
+Location: Line 4:10 → Line 4:25
+2025/06/23 00:11:47 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\sast-project\c_c_pluse_parser\rule_engine\rust\lang\security\unsafe-usage.rs
+2025/06/23 00:11:47 rustparser.go:231: Rust AST parsing complete for: unsafe-usage.rs
+2025/06/23 00:11:47 rustparser.go:236: [TOP-LEVEL NODE] source_file: "// ruleid: unsafe-usage\r\nlet pid = unsafe { libc::getpid() as u32 };\r\n\r\n// ok: unsafe-usage\r\nlet pid = libc::getpid() as u32;\r\n" at Line 1:0 → Line 6:0
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: unsafe_block
+Value: "unsafe { libc::getpid() as u32 }"
+Location: Line 2:10 → Line 2:42
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "libc::getpid()"
+Location: Line 5:10 → Line 5:24
+2025/06/23 00:11:47 rustparser.go:126: [DEBUG] Type: call_expression
+Value: "libc::getpid()"
+Location: Line 2:19 → Line 2:33
+2025/06/23 00:11:47 rustparser.go:203:  Vulnerability Found!
+2025/06/23 00:11:47 rustparser.go:204: Code         : "unsafe { libc::getpid() as u32 }"
+2025/06/23 00:11:47 rustparser.go:205: Location     : Line 2:10 → Line 2:42
+2025/06/23 00:11:47 rustparser.go:208: Message      : Use of 'unsafe' blocks bypasses Rust's memory safety guarantees, which can lead to undefined behavior.
+2025/06/23 00:11:47 rustparser.go:209: Recommendation: Avoid using 'unsafe' unless absolutely required. Use safe abstractions and libraries.
+2025/06/23 00:11:47 rustparser.go:210: CWE          : CWE-242
+2025/06/23 00:11:47 rustparser.go:211: Severity     : High
+2025/06/23 00:11:47 rustparser.go:212: ---------------------------------------------------
+2025/06/23 00:11:47 file_iterator.go:113: Analysis completed successfully
