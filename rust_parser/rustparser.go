@@ -200,25 +200,25 @@ func ReportVulnerabilities(ctx *AnalysisContext) {
 
 // Helper function to print matched vulnerability details
 func printRustVulnerability(node *ASTNode, rule rustrules.RustRule) {
-	fmt.Println(" Vulnerability Found!")
-	fmt.Printf("Code         : %q\n", node.Value)
-	fmt.Printf("Location     : Line %d:%d → Line %d:%d\n",
+	log.Println(" Vulnerability Found!")
+	log.Printf("Code         : %q\n", node.Value)
+	log.Printf("Location     : Line %d:%d → Line %d:%d\n",
 		node.PosStart.Line, node.PosStart.Column,
 		node.PosEnd.Line, node.PosEnd.Column)
-	fmt.Printf("Message      : %s\n", rule.Message)
-	fmt.Printf("Recommendation: %s\n", rule.Recommendation)
-	fmt.Printf("CWE          : %s\n", rule.CWE)
-	fmt.Printf("Severity     : %s\n", rule.Severity)
-	fmt.Println("---------------------------------------------------")
+	log.Printf("Message      : %s\n", rule.Message)
+	log.Printf("Recommendation: %s\n", rule.Recommendation)
+	log.Printf("CWE          : %s\n", rule.CWE)
+	log.Printf("Severity     : %s\n", rule.Severity)
+	log.Println("---------------------------------------------------")
 }
 func printRustSafety(node *ASTNode, rule rustrules.RustRule) {
-	fmt.Println(" Safe Usage Detected")
-	fmt.Printf("Code         : %q\n", node.Value)
-	fmt.Printf("Location     : Line %d:%d → Line %d:%d\n",
+	log.Println(" Safe Usage Detected")
+	log.Printf("Code         : %q\n", node.Value)
+	log.Printf("Location     : Line %d:%d → Line %d:%d\n",
 		node.PosStart.Line, node.PosStart.Column,
 		node.PosEnd.Line, node.PosEnd.Column)
-	fmt.Printf("Message      : %s\n", rule.Message)
-	fmt.Println("---------------------------------------------------")
+	log.Printf("Message      : %s\n", rule.Message)
+	log.Println("---------------------------------------------------")
 }
 
 // ============== Entry Function (Without Vulnerability Report) ==============
