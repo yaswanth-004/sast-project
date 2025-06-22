@@ -13,12 +13,9 @@ import (
 	"github.com/smacker/go-tree-sitter/csharp"
 	"github.com/smacker/go-tree-sitter/css"
 	"github.com/smacker/go-tree-sitter/golang"
-	"github.com/smacker/go-tree-sitter/html"
 	"github.com/smacker/go-tree-sitter/javascript"
 	"github.com/smacker/go-tree-sitter/kotlin"
 	"github.com/smacker/go-tree-sitter/ruby"
-
-	"github.com/smacker/go-tree-sitter/swift"
 )
 
 // ... [Unchanged code: ParseSource, printNode, Edge, FlowGraphs, flowGraphs, nodeMap, captureFlows]
@@ -34,8 +31,7 @@ func getLanguage(ext string) *ts.Language {
 		return css.GetLanguage()
 	case ".go":
 		return golang.GetLanguage()
-	case ".html":
-		return html.GetLanguage()
+
 	case ".js":
 		return javascript.GetLanguage()
 	case ".kt":
@@ -43,9 +39,6 @@ func getLanguage(ext string) *ts.Language {
 
 	case ".rb":
 		return ruby.GetLanguage()
-
-	case ".swift":
-		return swift.GetLanguage()
 
 	default:
 		return nil
@@ -73,7 +66,7 @@ func ParseSource(path string, content string) {
 	}
 
 	log.Printf("\n File: %s\n", path)
-	log.Println("CST Tree Structure:")
+	//log.Println("CST Tree Structure:")
 	printNode(tree.RootNode(), "")
 	//  Generate Control and Data Flow Trees
 	captureFlows(tree.RootNode())
