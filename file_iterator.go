@@ -61,7 +61,7 @@ func main() {
 
 	// Ask user for root directory
 	reader := bufio.NewReader(os.Stdin)
-	fmt.Print("Enter the root directory path: ")
+	log.Print("Enter the root directory path: ")
 	root, err := reader.ReadString('\n')
 	if err != nil {
 		log.Fatalf("Failed to read input: %v", err)
