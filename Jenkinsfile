@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        SAST_REPORT = "results/sast_output.txt"
+        SAST_REPORT = "results/report.txt"
     }
 
     stages {
@@ -22,8 +22,12 @@ pipeline {
         stage('Check Vulnerabilities') {
             steps {
                 script {
-                    def found = sh(script: "grep -i 'vulnerability' results/${SAST_REPORT}", returnStatus: true)
-                    if (found == 0) {
+                    // Using bat and checking exit code manually
+                    def result = bat(
+                        script: 'findstr /i "vulnerability" results\\report.txt',
+                        returnStatus: true
+                    )
+                    if (result == 0) {
                         currentBuild.result = 'UNSTABLE'
                         env.SHOULD_EMAIL = "true"
                     } else {
@@ -42,7 +46,7 @@ pipeline {
                         subject: "🚨 SAST Alert - Vulnerabilities Found",
                         body: "Hello,\n\nVulnerabilities were found in the latest scan.\n\nCheck the attached report.\n\nThanks,\nSAST Bot",
                         to: "maacyaswanth@gmail.com",
-                        attachmentsPattern: "${SAST_REPORT}"
+                        attachmentsPattern: "${report}"
                     )
                 }
             }
