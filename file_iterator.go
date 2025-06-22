@@ -41,7 +41,20 @@ type SourceFile struct {
 	Content string
 }
 
+// At the top of main() or wherever your scanning logic starts:
+
 func main() {
+	os.MkdirAll("results", os.ModePerm)
+	outputFile, err := os.Create("results/report.txt")
+	if err != nil {
+		log.Fatalf("Failed to create report: %v", err)
+	}
+	defer outputFile.Close()
+
+	// When you detect vulnerabilities, write like this:
+	fmt.Fprintln(outputFile, "[MATCH] ID: c-string-equality")
+	fmt.Fprintln(outputFile, "Details: Vulnerability found in ...")
+
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
 
 	reportFile, err := os.Create("report.txt")

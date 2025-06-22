@@ -21,6 +21,7 @@ pipeline {
 
         stage('Check Vulnerabilities') {
             steps {
+                 bat 'dir results' 
                 script {
                     // Using bat and checking exit code manually
                     def result = bat(
