@@ -1,0 +1,391 @@
+====== SAST Report ======
+2025/06/22 17:31:03 file_iterator.go:57: Starting SAST file iterator
+2025/06/22 17:31:03 file_iterator.go:60: Starting SAST file iterator
+2025/06/22 17:31:08 file_iterator.go:93: Processing file: C:\Users\HP\SASTTOOLPROJECT\rule_engine\swift\sqllite\sqllite-injection-audit.swift
+2025/06/22 17:31:08 swiftparser.go:97: [DEBUG] Found skip comment '// okid: [swift-potential-sqlite-injection]' at line 18
+2025/06/22 17:31:08 swiftparser.go:97: [DEBUG] Found skip comment '// okid: [swift-potential-sqlite-injection]' at line 31
+2025/06/22 17:31:08 swiftparser.go:57: Swift AST parsing complete for: sqllite-injection-audit.swift
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="&stmt", Line=19:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=integer_literal, Value="2", Line=21:28
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=40:40
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_step", Line=60:7
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="' AND password = '", Line=4:68
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="result", Line=7:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_close", Line=8:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"SELECT * FROM semgrep_users WHERE username = ? AND password = ?\"", Line=16:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=46:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_exec(db, sql, nil, nil, nil)", Line=12:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="sql", Line=12:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=50:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="stmt", Line=60:20
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_close(db)", Line=8:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db)", Line=8:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=12:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=19:22
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=integer_literal, Value="1", Line=19:32
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="theUsername", Line=36:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=52:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let sql = \"SELECT * FROM semgrep_users WHERE username = ? AND password = '\" + password + \"'\"", Line=56:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=10:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=type_identifier, Value="OpaquePointer", Line=17:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=additive_expression, Value="\"SELECT * FROM semgrep_users WHERE username = '\" + theUsername + \"' AND password = 'admin'\"", Line=37:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let newUser = getUsernameFromServer()", Line=43:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="sql", Line=52:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=56:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_prepare_v2(db, sql, -1, &stmt, nil)", Line=58:3
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db, sql, -1, &stmt, nil)", Line=58:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=7:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_close", Line=13:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let sql = \"SELECT * FROM semgrep_users WHERE username = ? AND password = ?\"", Line=16:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// ruleid:swift-potential-sqlite-injection\r", Line=45:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let result = sqlite3_exec(db, sql, nil, nil, nil)", Line=52:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_finalize", Line=65:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// ruleid:swift-potential-sqlite-injection\r", Line=6:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=equality_expression, Value="sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK", Line=19:3
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="stmt", Line=27:17
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_exec(db, sql, nil, nil, nil)", Line=32:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let sql = \"SELECT * FROM semgrep_users WHERE username = '\" + newUser + \"' AND password = 'admin'\"", Line=44:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_prepare_v2", Line=58:3
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db, sql, -1, &stmt, nil)", Line=58:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=58:22
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=1:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(stmt)", Line=27:16
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"' AND password = 'admin'\"", Line=37:75
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="newUser", Line=43:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="result", Line=46:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="-1", Line=58:31
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="stmt", Line=60:20
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db)", Line=66:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=7:45
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let result = sqlite3_exec(db, sql, nil, nil, nil)", Line=40:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// ruleid:swift-potential-sqlite-injection\r", Line=51:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="stmt", Line=20:22
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_bind_text(stmt, 2, password, -1, nil)", Line=21:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="getUsernameFromServer", Line=43:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="username", Line=59:31
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db)", Line=66:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db, sql, nil, nil, nil)", Line=12:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db)", Line=13:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=32:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="result", Line=40:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_exec(db, sql, nil, nil, nil)", Line=52:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=58:42
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=59:45
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="username", Line=4:59
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=19:22
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=32:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="()", Line=43:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="stmt", Line=59:22
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=7:40
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=8:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="stmt", Line=22:20
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_close(db)", Line=33:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// ruleid:swift-potential-sqlite-injection\r", Line=39:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_close", Line=41:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=prefix_expression, Value="&stmt", Line=58:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=navigation_suffix, Value=".text", Line=1:24
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// okid:swift-potential-sqlite-injection\r", Line=18:0
+2025/06/22 17:31:08 swiftparser.go:169: [DEBUG] Node ignored due to okid comment: "// okid:swift-potential-sqlite-injection\r" (Line 18)
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=32:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=additive_expression, Value="\"SELECT * FROM semgrep_users WHERE username = '\" + newUser", Line=44:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"' AND password = 'admin'\"", Line=44:71
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=58:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=16:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(stmt, 1, username, -1, nil)", Line=20:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="sql", Line=50:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = '\"", Line=50:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="a.text()", Line=2:15
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="sql", Line=7:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// ruleid:swift-potential-sqlite-injection\r", Line=11:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="-1", Line=20:41
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=46:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"'\"", Line=50:95
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_close", Line=53:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(stmt)", Line=60:19
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_prepare_v2", Line=19:3
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="stmt", Line=22:20
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let sql = \"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = 'admin'\"", Line=30:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=40:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="sql", Line=56:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="2", Line=21:28
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=30:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="getUsernameFromServer()", Line=43:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db, sql, nil, nil, nil)", Line=46:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=additive_expression, Value="\"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = '\" + password", Line=50:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="username", Line=1:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db, sql, nil, nil, nil)", Line=32:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="theUsername", Line=36:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let result = sqlite3_exec(db, sql, nil, nil, nil)", Line=46:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=46:45
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="stmt", Line=65:17
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=navigation_expression, Value="someField.text", Line=1:15
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="var stmt: OpaquePointer?", Line=17:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="theUsername", Line=37:61
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=additive_expression, Value="\"SELECT * FROM semgrep_users WHERE username = '\" + newUser + \"' AND password = 'admin'\"", Line=44:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db, sql, nil, nil, nil)", Line=52:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=additive_expression, Value="\"SELECT * FROM semgrep_users WHERE username = ? AND password = '\" + password", Line=56:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="SQLITE_OK", Line=58:50
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="stmt", Line=17:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=statements, Value="sqlite3_bind_text(stmt, 1, username, -1, nil)\r\n    sqlite3_bind_text(stmt, 2, password, -1, nil)\r\n    if sqlite3_step(stmt) == SQLITE_DONE {\r\n        // SUCCESS\r\n    }\r\n", Line=20:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_step(stmt)", Line=22:7
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=41:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="stmt", Line=58:36
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=66:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="someField.text()", Line=1:15
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="()", Line=1:29
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="stmt", Line=19:36
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_bind_text", Line=21:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=21:45
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(stmt)", Line=60:19
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=navigation_suffix, Value=".text", Line=2:16
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_finalize(stmt)", Line=27:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="newUser", Line=44:61
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=47:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=52:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=13:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db)", Line=33:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=36:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=12:40
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_close(db)", Line=41:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db, sql, nil, nil, nil)", Line=52:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(stmt)", Line=65:16
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=navigation_expression, Value="a.text", Line=2:15
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="sql", Line=4:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="SELECT * FROM semgrep_users WHERE username = '", Line=4:11
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=type_annotation, Value=": OpaquePointer?", Line=17:8
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="stmt", Line=20:22
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(stmt, 2, password, -1, nil)", Line=21:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=40:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=52:45
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="password", Line=4:88
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=prefix_expression, Value="-1", Line=21:41
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_exec(db, sql, nil, nil, nil)", Line=46:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=52:40
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=53:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"SELECT * FROM semgrep_users WHERE username = ? AND password = '\"", Line=56:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="'", Line=56:90
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_step", Line=22:7
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="stmt", Line=27:17
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="sql", Line=37:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db)", Line=41:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db, sql, nil, nil, nil)", Line=46:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// SUCCESS\r", Line=61:8
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="a", Line=2:15
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db, sql, nil, nil, nil)", Line=12:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_close(db)", Line=13:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="username", Line=20:31
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_exec(db, sql, nil, nil, nil)", Line=40:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=integer_literal, Value="1", Line=58:32
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_bind_text(stmt, 1, username, -1, nil)", Line=59:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=prefix_expression, Value="-1", Line=20:41
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// SUCCESS\r", Line=23:8
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = 'admin'\"", Line=30:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db)", Line=33:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=37:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="SELECT * FROM semgrep_users WHERE username = '", Line=37:11
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=43:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="result", Line=46:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="text", Line=2:17
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let sql = \"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = '\\(password)'\"", Line=10:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="stmt", Line=21:22
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="admin", Line=36:19
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=40:45
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="stmt", Line=59:22
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="sql", Line=16:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="newUser", Line=43:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="-1", Line=19:31
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// ruleid:swift-potential-sqlite-injection\r", Line=57:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(stmt, 1, username, -1, nil)", Line=59:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(stmt, 1, username, -1, nil)", Line=59:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="sql", Line=10:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="password", Line=10:82
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_close", Line=28:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=28:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db, sql, nil, nil, nil)", Line=32:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=if_statement, Value="if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK {\r\n    sqlite3_bind_text(stmt, 1, username, -1, nil)\r\n    if sqlite3_step(stmt) == SQLITE_DONE {\r\n        // SUCCESS\r\n    }\r\n}", Line=58:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(stmt)", Line=65:16
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="stmt", Line=65:17
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="'", Line=4:97
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="'", Line=10:91
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=12:45
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=13:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=19:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="stmt", Line=21:22
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=7:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="' AND password = 'admin'", Line=37:76
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="SELECT * FROM semgrep_users WHERE username = 'admin' AND password = '", Line=50:11
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="result", Line=52:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="password", Line=56:78
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_exec(db, sql, nil, nil, nil)", Line=7:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_exec", Line=7:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_bind_text(stmt, 1, username, -1, nil)", Line=20:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=equality_expression, Value="sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK", Line=58:3
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="username", Line=59:31
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"SELECT * FROM semgrep_users WHERE username = '\\(username)' AND password = '\\(password)'\"", Line=4:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="1", Line=20:28
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="username", Line=20:31
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=47:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="text", Line=1:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="()", Line=1:29
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=32:40
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="()", Line=43:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=additive_expression, Value="\"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = '\" + password + \"'\"", Line=50:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="1", Line=59:28
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=equality_expression, Value="sqlite3_step(stmt) == SQLITE_DONE", Line=60:7
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=if_statement, Value="if sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK {\r\n    sqlite3_bind_text(stmt, 1, username, -1, nil)\r\n    sqlite3_bind_text(stmt, 2, password, -1, nil)\r\n    if sqlite3_step(stmt) == SQLITE_DONE {\r\n        // SUCCESS\r\n    }\r\n}", Line=19:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="'", Line=50:96
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=interpolated_expression, Value="username", Line=4:59
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="stmt", Line=17:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=integer_literal, Value="1", Line=20:28
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=20:45
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="sql", Line=32:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=32:45
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db, sql, nil, nil, nil)", Line=40:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=58:22
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="()", Line=2:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=prefix_expression, Value="&stmt", Line=19:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=44:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=50:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db)", Line=53:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=66:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="()", Line=2:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=4:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="someField", Line=1:15
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="password", Line=2:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=interpolated_expression, Value="password", Line=10:82
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_exec", Line=32:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=40:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=44:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db, sql, nil, nil, nil)", Line=7:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_bind_text", Line=20:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_close", Line=33:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=46:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=52:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=prefix_expression, Value="-1", Line=59:41
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=integer_literal, Value="1", Line=59:42
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_close(db)", Line=66:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="password", Line=2:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db)", Line=8:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="SELECT * FROM semgrep_users WHERE username = 'admin' AND password = '", Line=10:11
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=12:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db)", Line=28:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=30:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=statements, Value="sqlite3_bind_text(stmt, 1, username, -1, nil)\r\n    if sqlite3_step(stmt) == SQLITE_DONE {\r\n        // SUCCESS\r\n    }\r\n", Line=59:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=19:42
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=equality_expression, Value="sqlite3_step(stmt) == SQLITE_DONE", Line=22:7
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="result", Line=32:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=32:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let theUsername = \"admin\"", Line=36:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// FP but cant do much about this I dont think\r", Line=38:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_bind_text", Line=59:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_prepare_v2(db, sql, -1, &stmt, nil)", Line=19:3
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let sql = \"SELECT * FROM semgrep_users WHERE username = '\" + theUsername + \"' AND password = 'admin'\"", Line=37:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=additive_expression, Value="\"SELECT * FROM semgrep_users WHERE username = '\" + theUsername", Line=37:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="sql", Line=40:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=52:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="SQLITE_DONE", Line=60:29
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="username", Line=1:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=2:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let result = sqlite3_exec(db, sql, nil, nil, nil)", Line=7:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="SQLITE_OK", Line=19:50
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=integer_literal, Value="1", Line=21:42
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db)", Line=41:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=46:40
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let sql = \"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = '\" + password + \"'\"", Line=50:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(stmt, 2, password, -1, nil)", Line=21:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="-1", Line=21:41
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="SQLITE_DONE", Line=22:29
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="result", Line=32:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"SELECT * FROM semgrep_users WHERE username = '\"", Line=37:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="' AND password = 'admin'", Line=44:72
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="password", Line=50:84
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=52:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(stmt)", Line=27:16
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=56:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=prefix_expression, Value="-1", Line=58:31
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_step(stmt)", Line=60:7
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db, sql, -1, &stmt, nil)", Line=19:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_finalize", Line=27:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=40:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="sql", Line=44:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="SELECT * FROM semgrep_users WHERE username = ? AND password = '", Line=56:11
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"'\"", Line=56:89
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="sql", Line=58:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db, sql, nil, nil, nil)", Line=7:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=user_type, Value="OpaquePointer", Line=17:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=33:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=integer_literal, Value="1", Line=59:28
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="result", Line=7:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="result", Line=12:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=comment, Value="// okid:swift-potential-sqlite-injection\r", Line=31:0
+2025/06/22 17:31:08 swiftparser.go:169: [DEBUG] Node ignored due to okid comment: "// okid:swift-potential-sqlite-injection\r" (Line 31)
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=37:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_exec", Line=52:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_close", Line=66:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let username = someField.text()", Line=1:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=interpolated_expression, Value="password", Line=4:88
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=12:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db, sql, -1, &stmt, nil)", Line=19:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="sql", Line=19:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(stmt)", Line=22:19
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="sql", Line=30:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=40:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=10:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=12:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=if_statement, Value="if sqlite3_step(stmt) == SQLITE_DONE {\r\n        // SUCCESS\r\n    }", Line=22:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=32:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"admin\"", Line=36:18
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=41:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="result", Line=52:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_close(db)", Line=53:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=4:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=33:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"SELECT * FROM semgrep_users WHERE username = '\"", Line=44:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_exec", Line=46:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db)", Line=47:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db)", Line=53:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="-1", Line=59:41
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="var", Line=17:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=if_statement, Value="if sqlite3_step(stmt) == SQLITE_DONE {\r\n        // SUCCESS\r\n    }", Line=60:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(stmt)", Line=22:19
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="SELECT * FROM semgrep_users WHERE username = 'admin' AND password = 'admin'", Line=30:11
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let result = sqlite3_exec(db, sql, nil, nil, nil)", Line=32:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_close(db)", Line=47:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=53:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let result = sqlite3_exec(db, sql, nil, nil, nil)", Line=12:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_exec", Line=12:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=optional_type, Value="OpaquePointer?", Line=17:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_close(db)", Line=28:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db)", Line=47:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_expression, Value="sqlite3_finalize(stmt)", Line=65:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=7:26
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="result", Line=12:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="db", Line=28:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="SELECT * FROM semgrep_users WHERE username = '", Line=44:11
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(stmt, 1, username, -1, nil)", Line=20:21
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db, sql, nil, nil, nil)", Line=40:25
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=additive_expression, Value="\"SELECT * FROM semgrep_users WHERE username = ? AND password = '\" + password + \"'\"", Line=56:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_arguments, Value="(db)", Line=13:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=integer_literal, Value="1", Line=20:42
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="password", Line=21:31
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=call_suffix, Value="(db)", Line=28:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=pattern, Value="result", Line=40:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_exec", Line=40:13
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=46:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sqlite3_close", Line=47:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let sql = \"SELECT * FROM semgrep_users WHERE username = '\\(username)' AND password = '\\(password)'\"", Line=4:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=source_file, Value="let username = someField.text()\r\nlet password = a.text()\r\n\r\nlet sql = \"SELECT * FROM semgrep_users WHERE username = '\\(username)' AND password = '\\(password)'\"\r\n\r\n// ruleid:swift-potential-sqlite-injection\r\nlet result = sqlite3_exec(db, sql, nil, nil, nil)\r\nsqlite3_close(db)\r\n\r\nlet sql = \"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = '\\(password)'\"\r\n// ruleid:swift-potential-sqlite-injection\r\nlet result = sqlite3_exec(db, sql, nil, nil, nil)\r\nsqlite3_close(db)\r\n\r\n\r\nlet sql = \"SELECT * FROM semgrep_users WHERE username = ? AND password = ?\"\r\nvar stmt: OpaquePointer?\r\n// okid:swift-potential-sqlite-injection\r\nif sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK {\r\n    sqlite3_bind_text(stmt, 1, username, -1, nil)\r\n    sqlite3_bind_text(stmt, 2, password, -1, nil)\r\n    if sqlite3_step(stmt) == SQLITE_DONE {\r\n        // SUCCESS\r\n    }\r\n}\r\n\r\nsqlite3_finalize(stmt)\r\nsqlite3_close(db)\r\n\r\nlet sql = \"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = 'admin'\"\r\n// okid:swift-potential-sqlite-injection\r\nlet result = sqlite3_exec(db, sql, nil, nil, nil)\r\nsqlite3_close(db)\r\n\r\n\r\nlet theUsername = \"admin\"\r\nlet sql = \"SELECT * FROM semgrep_users WHERE username = '\" + theUsername + \"' AND password = 'admin'\"\r\n// FP but cant do much about this I dont think\r\n// ruleid:swift-potential-sqlite-injection\r\nlet result = sqlite3_exec(db, sql, nil, nil, nil)\r\nsqlite3_close(db)\r\n\r\nlet newUser = getUsernameFromServer()\r\nlet sql = \"SELECT * FROM semgrep_users WHERE username = '\" + newUser + \"' AND password = 'admin'\"\r\n// ruleid:swift-potential-sqlite-injection\r\nlet result = sqlite3_exec(db, sql, nil, nil, nil)\r\nsqlite3_close(db)\r\n\r\n\r\nlet sql = \"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = '\" + password + \"'\"\r\n// ruleid:swift-potential-sqlite-injection\r\nlet result = sqlite3_exec(db, sql, nil, nil, nil)\r\nsqlite3_close(db)\r\n\r\n\r\nlet sql = \"SELECT * FROM semgrep_users WHERE username = ? AND password = '\" + password + \"'\"\r\n// ruleid:swift-potential-sqlite-injection\r\nif sqlite3_prepare_v2(db, sql, -1, &stmt, nil) == SQLITE_OK {\r\n    sqlite3_bind_text(stmt, 1, username, -1, nil)\r\n    if sqlite3_step(stmt) == SQLITE_DONE {\r\n        // SUCCESS\r\n    }\r\n}\r\n\r\nsqlite3_finalize(stmt)\r\nsqlite3_close(db)", Line=1:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=7:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="nil", Line=7:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=12:30
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="password", Line=21:31
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="&stmt", Line=58:35
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=property_declaration, Value="let password = a.text()", Line=2:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="db", Line=8:14
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_string_literal, Value="\"SELECT * FROM semgrep_users WHERE username = 'admin' AND password = '\\(password)'\"", Line=10:10
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=simple_identifier, Value="sql", Line=16:4
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=line_str_text, Value="SELECT * FROM semgrep_users WHERE username = ? AND password = ?", Line=16:11
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=prefix_expression, Value="-1", Line=19:31
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_binding_pattern, Value="let", Line=46:0
+2025/06/22 17:31:08 swiftparser.go:167: [DEBUG] Processing node: Type=value_argument, Value="sql", Line=46:30
+2025/06/22 17:31:08 file_iterator.go:113: Analysis completed successfully
